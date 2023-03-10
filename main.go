@@ -1,30 +1,13 @@
 package main
 
 import (
-	"os"
-
-	"github.com/gofiber/fiber/v2"
+	"fmt"
+	"github.com/kooroshh/fiber-boostrap/bootstrap"
+	"github.com/kooroshh/fiber-boostrap/pkg/env"
+	"log"
 )
 
-func getPort() string {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = ":3000"
-	} else {
-		port = ":" + port
-	}
-
-	return port
-}
-
 func main() {
-	app := fiber.New()
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"message": "Hello, Railway!",
-		})
-	})
-
-	app.Listen(getPort())
+	app := bootstrap.NewApplication()
+	log.Fatal(app.Listen(fmt.Sprintf("%s:%s", env.GetEnv("APP_HOST", "localhost"), env.GetEnv("APP_PORT", "4000"))))
 }

@@ -1,27 +1,31 @@
----
-title: Fiber
-description: A Fiber web server
-tags:
-  - fiber
-  - golang
----
+# Fiber Bootstrap
+Fiber bootstrap for rapid development using Go-Fiber / Gorm / Validator.
 
-# Fiber Example
+# Components
+* Fiber
+  * Html Engine Template
+  * Logger
+  * Monitoring
+* Gorm
+  * PGSQL Driver
+* Validator  
+* Env File
 
-This example starts a [Fiber](https://gofiber.io/) server.
+# Router 
+API Router `/api` with rate limiter middleware  
+Http Router `/` with CORS and CSRF middleware  
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/7di0JR)
+# Setup
 
-## ✨ Features
+1. Copy the example env file over:
+    ```
+    cp .env.example .env
+    ```
 
-- Fiber
-- Go
+2. Modify the env file you just copied `.env` with the correct credentials for your database. Make sure the database you entered in `DB_NAME` has been created.
 
-## 💁‍♀️ How to use
-
-- Connect to your Railway project `railway link`
-- Start the development server `railway run go run main.go`
-
-## 📝 Notes
-
-The server started simply returns a `message: "Hello, Railway!"` payload in JSON. The server code is located in `main.go`.
+3. Run the API:
+    ```
+    go run main.go
+    ```
+Your api should be running at `http://localhost:4000/` if the port is in use you may modify it in the `.env` you just created.
